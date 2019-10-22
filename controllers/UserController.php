@@ -19,7 +19,10 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $user="Sergey";
+        return $this->render('index', [
+            'user' => $user,
+        ]);
     }
 
 
