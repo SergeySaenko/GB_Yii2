@@ -13,6 +13,7 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'activity' => ['class'=>\app\components\ActivityComponent::class, 'modelClass'=>\app\models\Activity::class],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'MbOBBLeQNCRFpjaDkjoukkudLlVc4yp8',

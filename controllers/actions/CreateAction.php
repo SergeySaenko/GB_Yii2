@@ -11,11 +11,11 @@ class CreateAction extends BaseAction
 {
   public function run()
   {
-    $model = new Activity();
+    $model = \Yii::$app->activity->getModel();
     if (\Yii::$app->request->isPost){
       $model->load(\Yii::$app->request->post());
-      if (!$model->validate()){
-        \Yii::error($model->getErrors());
+      if (\Yii::$app->activity->addActivity($model)){
+
       }
     }
     return $this->controller->render('create',['model'=>$model]);
