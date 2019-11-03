@@ -63,7 +63,8 @@ AppAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
-        <?= $lastPage ?>
+        <!-- $lastPage; -->
+        <?= Yii::$app->request->referrer ? \yii\helpers\Html::a( 'Back', Yii::$app->request->referrer) : ""; ?>
         <?= $content ?>
     </div>
 </div>

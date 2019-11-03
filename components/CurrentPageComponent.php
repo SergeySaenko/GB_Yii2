@@ -8,18 +8,26 @@ use yii\base\Component;
 
 class CurrentPageComponent extends Component
 {
+
+  public $pageClass;
+
   public function init()
   {
     parent::init();
   }
 
-  public function setPage (CurrentPage $currentUrl): string
+  public function getPage()
   {
-    $currentUrl = \Yii::$app->request->getUrl();
-    \Yii::$app->session->set('url','currentUrl');
+    return new $this->$pageClass;
   }
 
-  public function getPage (CurrentPage $lastUrl): string
+  public function setPage ()
+  {
+    $currentUrl = \Yii::$app->request->getUrl();
+    \Yii::$app->session->set('url', $currentUrl);
+  }
+
+  public function lastPage ()
   {
     $lastUrl = \Yii::$app->session->get('url');
     if (!$lastUrl){
