@@ -1,5 +1,6 @@
 <?php
-/**
+/*
+*
  * @var $model \app\models\Activity
  */
 ?>
