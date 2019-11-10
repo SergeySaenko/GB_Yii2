@@ -22,36 +22,17 @@ class ActivityComponent extends Component
     {
       return new $this->modelClass;
     }
+
   public function addActivity (Activity $activity): bool
   {
     $activity->file=UploadedFile::getInstance($activity, 'file');
 
-    if ($activity->validate()) {
-      if ($activity->file && !\Yii::$app->fileSaver->saveFile($activity->file)){
-        return false;
+      if ($activity->file){
+        $activity->file=\Yii::$app->fileSaver->saveFile($activity->file);
+        if(!$activity->file){
+          return false;
+        }
       }
       return true;
-    }
-     return false;
   }
-
-//  private function saveFile(UploadedFile $file): ?string{
-//    $name=$this->genFileName($file);
-//    $path=$this->getPathToSave().$name;
-//
-//    if ($file->saveAs($path)){
-//      return $name;
-//    }
-//    return null;
-//  }
-//
-//  private function getPathToSave(){
-//    $path = \Yii::getAlias('@webroot/files/');
-//    FileHelper::createDirectory($path);
-//    return $path;
-//  }
-//
-//  private function genFileName(UploadedFile $file){
-//    return time().$file->getBaseName().'.'.$file->getExtension();
-//  }
 }

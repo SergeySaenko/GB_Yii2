@@ -40,7 +40,7 @@ class Activity extends BaseModel
   {
     return [
       ['title', 'trim'],
-      ['file', 'file', 'extensions' => ['jpg', 'png', 'jpeg']],
+      ['file', 'file', 'extensions' => 'png, jpg'],
       [['title', 'date', 'frequency'], 'required'],
       ['description', 'string', 'max' => 250, 'min' => 5],
       //['description', 'defaultValue'=>$this->title],
@@ -65,7 +65,8 @@ class Activity extends BaseModel
       'isBlocking' => 'Блокирующее',
       'frequency' => 'Повторить',
       'reminder' => 'Напоминание',
-      'email' => 'Эл.почта'
+      'email' => 'Эл.почта',
+      'file' => 'Файл'
     ];
   }
 }

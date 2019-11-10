@@ -6,7 +6,7 @@
 <h1>Новая активность</h1>
 <div class="row">
     <div class="col-md-8">
-        <?php $form = \yii\bootstrap\ActiveForm::begin();?>
+        <?php $form = \yii\bootstrap\ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]);?>
             <?=$form->field($model,'title');?>
             <?=$form->field($model,'description')->textarea();?>
             <?=$form->field($model,'date')->input('date');?>

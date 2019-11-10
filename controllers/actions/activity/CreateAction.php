@@ -20,8 +20,10 @@ class CreateAction extends BaseAction
         \Yii::$app->response->format=Response::FORMAT_JSON;
         return ActiveForm::validate($model);
       }
-      if (\Yii::$app->activity->addActivity($model)){
-
+      if (!\Yii::$app->activity->addActivity($model)){
+        print_r($model->getErrors());
+      }else{
+        return $this->controller->render('view', ['model'=>$model]);
       }
     }
     return $this->controller->render('create',['model'=>$model]);

@@ -21,7 +21,6 @@ class FileSaver extends Component
   public function saveFile(UploadedFile $file): ?string{
     $name=$this->genFileName($file);
     $path=$this->getPathToSave().$name;
-
     if ($file->saveAs($path)){
       return $name;
     }
