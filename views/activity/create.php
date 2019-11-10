@@ -1,6 +1,5 @@
 <?php
-/*
-*
+/**
  * @var $model \app\models\Activity
  */
 ?>
@@ -13,7 +12,10 @@
             <?=$form->field($model,'date')->input('date');?>
             <?=$form->field($model,'time')->input('time');?>
             <?=$form->field($model,'isBlocking')->checkbox();?>
-            <?=$form->field($model,'repeatable')->checkbox();?>
+            <?=$form->field($model,'frequency')->dropDownList($model::FREQUENCY);?>
+            <?=$form->field($model,'reminder')->checkbox();?>
+            <?=$form->field($model,'email', ['enableClientValidation' => false, 'enableAjaxValidation' => true ]);?>
+            <?=$form->field($model,'file')->fileInput();?>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Сохранить</button>
         </div>

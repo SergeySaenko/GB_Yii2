@@ -1,11 +1,13 @@
 <?php
 
 
-namespace app\controllers\actions;
+namespace app\controllers\actions\activity;
 
 
 use app\base\BaseAction;
 use app\models\Activity;
+use yii\bootstrap\ActiveForm;
+use yii\web\Response;
 
 class CreateAction extends BaseAction
 {
@@ -14,6 +16,10 @@ class CreateAction extends BaseAction
     $model = \Yii::$app->activity->getModel();
     if (\Yii::$app->request->isPost){
       $model->load(\Yii::$app->request->post());
+      if (\Yii::$app->request->isAjax){
+        \Yii::$app->response->format=Response::FORMAT_JSON;
+        return ActiveForm::validate($model);
+      }
       if (\Yii::$app->activity->addActivity($model)){
 
       }
