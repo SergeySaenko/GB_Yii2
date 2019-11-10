@@ -113,3 +113,8 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.information {
+    background-image: linear-gradient(to left, rgba(0,153,218,0), rgba(0,153,218,1));
+    color: #ffffff;
+}
