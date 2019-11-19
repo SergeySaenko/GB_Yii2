@@ -1,8 +1,8 @@
 <?php
 
 $params = require __DIR__ . '/params.php';
-$db = file_exists(__DIR__.'/db_local.php') ?
-  require __DIR__ . '/db_local.php' :
+$db = file_exists(__DIR__.'/db_local.php')?
+  require __DIR__ . '/db_local.php':
   require __DIR__ . '/db.php';
 
 $config = [
@@ -22,6 +22,7 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'MbOBBLeQNCRFpjaDkjoukkudLlVc4yp8',
         ],
+        'dao'=>['class'=>\app\components\DAOComponent::class],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
