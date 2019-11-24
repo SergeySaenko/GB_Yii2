@@ -23,11 +23,12 @@ $config = [
             'cookieValidationKey' => 'MbOBBLeQNCRFpjaDkjoukkudLlVc4yp8',
         ],
         'dao'=>['class'=>\app\components\DAOComponent::class],
+        'auth'=>['class'=>\app\components\AuthComponent::class],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\Users',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
