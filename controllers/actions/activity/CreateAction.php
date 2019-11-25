@@ -7,12 +7,16 @@ namespace app\controllers\actions\activity;
 use app\base\BaseAction;
 use app\models\Activity;
 use yii\bootstrap\ActiveForm;
+use yii\web\HttpException;
 use yii\web\Response;
 
 class CreateAction extends BaseAction
 {
   public function run()
   {
+    if (!\Yii::$app->rbac->canCreateActivity()){
+      throw new HttpException(403, 'Действие не авторизовано');
+    }
     $model = \Yii::$app->activity->getModel();
     if (\Yii::$app->request->isPost){
       $model->load(\Yii::$app->request->post());

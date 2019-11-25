@@ -22,6 +22,8 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'MbOBBLeQNCRFpjaDkjoukkudLlVc4yp8',
         ],
+        'authManager' => ['class' => 'yii\rbac\DbManager'],
+        'rbac'=>['class'=>\app\components\RbacComponent::class],
         'dao'=>['class'=>\app\components\DAOComponent::class],
         'auth'=>['class'=>\app\components\AuthComponent::class],
         'cache' => [

@@ -6,14 +6,14 @@ namespace app\models;
 
 use app\base\BaseModel;
 
-class Activity extends BaseModel
+class Activity extends ActivityBase
 {
-  public $title;
-  public $description;
-  public $date;
-  public $time;
-  public $isBlocking;
-  public $frequency;
+//  public $title;
+//  public $description;
+//  public $date;
+//  public $time;
+//  public $isBlocking;
+//  public $frequency;
 
   const NON_REPEATABLE = 0;
   const DAY = 1;
@@ -21,9 +21,9 @@ class Activity extends BaseModel
   const MONTH = 3;
   const FREQUENCY = [self::NON_REPEATABLE=>"Без повторений", self::DAY=>"Каждый день", self::WEEK=>"Каждую неделю", self::MONTH=>"Каждый месяц"];
 
-  public $reminder;
-  public $email;
-  public $file;
+//  public $reminder;
+//  public $email;
+//  public $file;
 
   public function beforeValidate()
   {
@@ -38,7 +38,7 @@ class Activity extends BaseModel
 
   public function rules()
   {
-    return [
+    return array_merge([
       ['title', 'trim'],
       ['file', 'file', 'extensions' => 'png, jpg'],
       [['title', 'date', 'frequency'], 'required'],
@@ -52,7 +52,7 @@ class Activity extends BaseModel
         return $model->reminder;
       }],
       ['frequency', 'in', 'range' => array_keys( self::FREQUENCY)]
-    ];
+    ], parent::rules());
   }
 
   public function attributeLabels()
