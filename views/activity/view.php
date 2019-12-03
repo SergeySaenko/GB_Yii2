@@ -20,6 +20,8 @@ $frequency = yii\helpers\ArrayHelper::getValue($array,$model->frequency);
             <div class="bg-light p-3">
                 <h4><?='Запланировано на     '.Yii::$app->formatter->asDate($model->date, 'short').
                   ($model->time ? ' в '.Yii::$app->formatter->asTime($model->time, 'short') :'')?></h4>
+                <h5><?= $model->endDate ?
+                    'Дата окончания '.Yii::$app->formatter->asDate($model->endDate, 'short') :''?></h5>
                 <ul>
                     <li><?= $frequency ?></li>
                     <li><?= $model->isBlocking ? 'Обязательно пойти' : 'Не обязательно'?></li>

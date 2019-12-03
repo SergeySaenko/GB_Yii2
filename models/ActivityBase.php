@@ -11,6 +11,7 @@ use Yii;
  * @property string $title
  * @property string $description
  * @property string $date
+ * @property string $endDate
  * @property string $time
  * @property int $isBlocking
  * @property int $frequency
@@ -40,7 +41,7 @@ class ActivityBase extends \yii\db\ActiveRecord
         return [
             [['description'], 'string'],
             [['date', 'userId'], 'required'],
-            [['date', 'time', 'createAt'], 'safe'],
+            [['date', 'time', 'endDate', 'createAt'], 'safe'],
             [['isBlocking', 'frequency', 'reminder', 'userId'], 'integer'],
             [['title', 'email'], 'string', 'max' => 150],
             [['file'], 'string', 'max' => 200],
@@ -59,6 +60,7 @@ class ActivityBase extends \yii\db\ActiveRecord
             'description' => Yii::t('app', 'Description'),
             'date' => Yii::t('app', 'Date'),
             'time' => Yii::t('app', 'Time'),
+            'EndDate' => Yii::t('app', 'End Date'),
             'isBlocking' => Yii::t('app', 'Is Blocking'),
             'frequency' => Yii::t('app', 'Frequency'),
             'reminder' => Yii::t('app', 'Reminder'),
