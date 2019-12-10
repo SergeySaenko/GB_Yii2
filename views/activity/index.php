@@ -29,6 +29,12 @@
           'date',
           [
             'attribute' => 'user.email'
+          ],
+          [
+            'attribute' =>  'createAt',
+            'value' =>  function (\app\models\Activity $model){
+              return $model->getDateCreated();
+            }
           ]
         ]
     ]);?>

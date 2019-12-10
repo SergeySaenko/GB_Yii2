@@ -5,15 +5,11 @@ namespace app\models;
 
 
 use app\base\BaseModel;
+use app\behaviors\DateCreatedBehaviors;
+use app\behaviors\LogBehavior;
 
 class Activity extends ActivityBase
 {
-//  public $title;
-//  public $description;
-//  public $date;
-//  public $time;
-//  public $isBlocking;
-//  public $frequency;
 
   const NON_REPEATABLE = 0;
   const DAY = 1;
@@ -21,9 +17,13 @@ class Activity extends ActivityBase
   const MONTH = 3;
   const FREQUENCY = [self::NON_REPEATABLE=>"Без повторений", self::DAY=>"Каждый день", self::WEEK=>"Каждую неделю", self::MONTH=>"Каждый месяц"];
 
-//  public $reminder;
-//  public $email;
-//  public $file;
+  public function behaviors()
+  {
+    return [
+      ['class'=>DateCreatedBehaviors::class, 'attributeName'=>'createAt'],
+      LogBehavior::class
+    ];
+  }
 
   public function beforeValidate()
   {

@@ -7,8 +7,7 @@ $array = $model::FREQUENCY;
 $frequency = yii\helpers\ArrayHelper::getValue($array,$model->frequency);
 ?>
 
-
-
+<!--?=Yii::$app->logs('log in APP component');?-->
 
 <section class="container-fluid">
     <div class="row">
