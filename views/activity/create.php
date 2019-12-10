@@ -11,6 +11,7 @@
             <?=$form->field($model,'description')->textarea();?>
             <?=$form->field($model,'date')->input('date');?>
             <?=$form->field($model,'time')->input('time');?>
+            <?=$form->field($model,'endDate')->input('date');?>
             <?=$form->field($model,'isBlocking')->checkbox();?>
             <?=$form->field($model,'frequency')->dropDownList($model::FREQUENCY);?>
             <?=$form->field($model,'reminder')->checkbox();?>
@@ -20,7 +21,5 @@
             <button type="submit" class="btn btn-primary">Сохранить</button>
         </div>
         <?php \yii\bootstrap\ActiveForm::end();?>
-
-
     </div>
 </div>
