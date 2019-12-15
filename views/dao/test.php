@@ -5,11 +5,13 @@
 ?>
 
 <div class="row">
+    <?php if($this->beginCache('view1',['duration'=>30])):?>
   <div class="col-md-6">
       <pre>
           <?=print_r($users);?>
       </pre>
   </div>
+    <?php $this->endCache(); endif;?>
   <div class="col-md-6">
       <pre>
           <?=print_r($activityUser);?>

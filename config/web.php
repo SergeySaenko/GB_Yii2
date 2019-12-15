@@ -28,7 +28,8 @@ $config = [
         'dao'=>['class'=>\app\components\DAOComponent::class],
         'auth'=>['class'=>\app\components\AuthComponent::class],
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => 'yii\caching\MemCache',
+            'useMemcached' => true,
         ],
         'user' => [
             'identityClass' => 'app\models\Users',
