@@ -9,6 +9,10 @@ use yii\grid\GridView;
 
 $this->title = 'Activities';
 $this->params['breadcrumbs'][] = $this->title;
+$dependency = [
+  'class' => 'yii\caching\DbDependency',
+  'sql' => 'select max(id) from activity',
+];
 ?>
 <div class="activity-index">
 
@@ -19,6 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <?php if($this->beginCache('activityIndexC',['dependency' => $dependency])):?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -44,5 +50,6 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
+    <?php $this->endCache(); endif;?>
 
 </div>

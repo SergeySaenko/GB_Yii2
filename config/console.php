@@ -17,7 +17,8 @@ $config = [
     ],
     'components' => [
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+          'class' => 'yii\caching\MemCache',
+          'useMemcached' => true,
         ],
         'authManager' => [
           'class' => 'yii\rbac\DbManager'

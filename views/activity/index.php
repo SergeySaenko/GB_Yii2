@@ -5,8 +5,14 @@
 /* @var $this \yii\web\View */
 /* @var $model \app\models\ActivitySearch */
 /* @var $provider \yii\data\ActiveDataFilter */
+
+$dependency = [
+  'class' => 'yii\caching\DbDependency',
+  'sql' => 'select max(id) from activity',
+];
 ?>
 <div class="row">
+  <?php if($this->beginCache('activityIndex0',['dependency' => $dependency])):?>
   <div class="col-md-12">
     <?= \yii\grid\GridView::widget([
         //['class' => \yii\grid\SerialColumn::class],
@@ -39,4 +45,5 @@
         ]
     ]);?>
   </div>
+  <?php $this->endCache(); endif;?>
 </div>
