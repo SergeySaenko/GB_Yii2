@@ -5,15 +5,11 @@ namespace app\models;
 
 
 use app\base\BaseModel;
+use app\behaviors\DateCreatedBehaviors;
+use app\behaviors\LogBehavior;
 
 class Activity extends ActivityBase
 {
-//  public $title;
-//  public $description;
-//  public $date;
-//  public $time;
-//  public $isBlocking;
-//  public $frequency;
 
   const NON_REPEATABLE = 0;
   const DAY = 1;
@@ -21,9 +17,13 @@ class Activity extends ActivityBase
   const MONTH = 3;
   const FREQUENCY = [self::NON_REPEATABLE=>"Без повторений", self::DAY=>"Каждый день", self::WEEK=>"Каждую неделю", self::MONTH=>"Каждый месяц"];
 
-//  public $reminder;
-//  public $email;
-//  public $file;
+  public function behaviors()
+  {
+    return [
+      ['class'=>DateCreatedBehaviors::class, 'attributeName'=>'createAt'],
+      LogBehavior::class
+    ];
+  }
 
   public function beforeValidate()
   {
@@ -43,9 +43,10 @@ class Activity extends ActivityBase
       ['file', 'file', 'extensions' => 'png, jpg'],
       [['title', 'date', 'frequency'], 'required'],
       ['description', 'string', 'max' => 250, 'min' => 5],
-      //['description', 'defaultValue'=>$this->title],
-      [['date', 'time'], 'string'],
-      ['date', 'date', 'format' => 'php:Y-m-d'],
+      ['description', 'default', 'value'=>$this->title],
+      ['time', 'string'],
+      [['date', 'endDate'], 'date', 'format' => 'php:Y-m-d'],
+      ['endDate', 'default', 'value'=>$this->date],
       [['isBlocking', 'reminder'], 'boolean'],
       ['email', 'email'],
       ['email', 'required', 'when' => function($model){
@@ -60,8 +61,9 @@ class Activity extends ActivityBase
     return [
       'title' => 'Заголовок',
       'description' => 'Описание',
-      'date' => 'Дата',
+      'date' => 'Дата начала',
       'time' => 'Время',
+      'endDate' => 'Дата окончания',
       'isBlocking' => 'Блокирующее',
       'frequency' => 'Повторить',
       'reminder' => 'Напоминание',
