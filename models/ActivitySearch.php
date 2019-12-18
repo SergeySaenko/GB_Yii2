@@ -19,10 +19,10 @@ class ActivitySearch extends Activity
           'defaultOrder'  => [
             'date'  =>  SORT_DESC
           ]
-        ],
+        ]/*,
         'pagination' => [
           'pageSize' => 5
-        ]
+        ]*/
       ]
     );
     $query->with('user');

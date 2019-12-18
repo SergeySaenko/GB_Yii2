@@ -45,10 +45,10 @@ class ActivityS extends Activity
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $query,
+            'query' => $query/*,
             'pagination' => [
               'pageSize' => 5
-            ]
+            ]*/
         ]);
 
         $this->load($params);
