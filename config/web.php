@@ -21,7 +21,8 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'MbOBBLeQNCRFpjaDkjoukkudLlVc4yp8',
-            'as logs' => ['class'=>\app\behaviors\LogBehavior::class]
+            'as logs' => ['class'=>\app\behaviors\LogBehavior::class],
+            'parsers'  => ['application/json'=>\yii\web\JsonParser::class]
         ],
         'authManager' => ['class' => 'yii\rbac\DbManager'],
         'rbac'=>['class'=>\app\components\RbacComponent::class],
@@ -34,6 +35,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\Users',
             'enableAutoLogin' => true,
+//            'enableSession' => false
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -62,7 +64,12 @@ $config = [
             'rules' => [
               'create'=>'activity/create',
               'event/<action>'=>'activity/<action>',
-              'GET <controller>/view/<id:\d+>'=>'activity/view'
+              'GET <controller>/view/<id:\d+>'=>'activity/view',
+              [
+                'class'=>yii\rest\UrlRule::class,
+                'controller'=>'activity-rest',
+                'pluralize'=>false
+              ]
             ],
         ],
         

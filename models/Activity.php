@@ -71,4 +71,27 @@ class Activity extends ActivityBase
       'file' => 'Файл'
     ];
   }
+
+  public function fields()
+  {
+    return [
+      'id',
+      'title',
+      'date'=>function($model){
+        return \Yii::$app->formatter->asDate($model->date, 'd.M.Y');
+      },
+      'duration'=>function(){
+      return 0;
+      }
+    ];
+  }
+
+  public function extraFields()
+  {
+    return [
+      'user'=>function($model){
+        return $model->user->email;
+      }
+    ];
+  }
 }
