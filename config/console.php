@@ -15,6 +15,19 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
         '@tests' => '@app/tests',
     ],
+    'container' =>  [
+      'singletons'  =>  [
+        \app\components\notifications\Notification::class  =>  [
+          ['class'=>\app\components\notifications\NotificationEmail::class],
+          [\yii\di\Instance::of('mail')]
+        ],
+        'mail'  =>  function(){
+          return Yii::$app->mailer;
+        },
+        \app\components\logger\Logger::class=>['class'=>\app\components\logger\LoggerConsole::class]
+      ],
+      'definitions' =>  []
+    ],
     'components' => [
         'cache' => [
           'class' => 'yii\caching\MemCache',

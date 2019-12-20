@@ -4,13 +4,21 @@
 namespace app\commands;
 
 
-use app\components\NotificationComponent;
+use app\components\notifications\Notification;
 use yii\console\Controller;
 use yii\helpers\Console;
 
 class NotificationController extends Controller
 {
   public $name;
+
+  private $notification;
+
+  public function __construct($id, $module, Notification $notification, $config = [])
+  {
+    $this->notification=$notification;
+    parent::__construct($id, $module, $config);
+  }
 
   public function options($actionID)
   {
@@ -37,13 +45,8 @@ class NotificationController extends Controller
       \Yii::$app->end(0);
     }
 
-    /**
-     * @var NotificationComponent $notif
-     */
-    $notif=\Yii::createObject(NotificationComponent::class);
-
     echo Console::ansiFormat('Count activity:'.count($activities),[Console::BG_GREEN, Console::FG_BLACK]).PHP_EOL;
 
-    $notif->sendNotifications($activities);
+    $this->notification->sendNotifications($activities);
   }
 }
