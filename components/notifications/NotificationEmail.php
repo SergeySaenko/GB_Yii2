@@ -29,7 +29,7 @@ class NotificationEmail implements Notification
   public function sendNotifications(array $activity): bool
   {
     foreach ($activity as $activity){
-      $send=$this->mailer()->compose('notif',['model'=>$activity])
+      $send=$this->mailer->compose('notif',['model'=>$activity])
         ->setSubject('Активность '.$activity->title.' начинается сегодня')
         ->setFrom('v4t4@yandex.ru')
         ->setTo($activity->email)
