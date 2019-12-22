@@ -3,7 +3,8 @@
  * @var $model \app\models\Activity
  */
 ?>
-<h1>Новая активность</h1>
+<h1><?=Yii::t('app', 'Create activity') ?></h1>
+<?= Yii::t('app', 'For user', ['user'=>Yii::$app->user->getId()]) ?>
 <div class="row">
     <div class="col-md-8">
         <?php $form = \yii\bootstrap\ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]);?>

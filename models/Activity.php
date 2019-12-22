@@ -56,7 +56,7 @@ class Activity extends ActivityBase
     ], parent::rules());
   }
 
-  public function attributeLabels()
+/*  public function attributeLabels()
   {
     return [
       'title' => 'Заголовок',
@@ -70,7 +70,7 @@ class Activity extends ActivityBase
       'email' => 'Эл.почта',
       'file' => 'Файл'
     ];
-  }
+  }*/
 
   public function fields()
   {
