@@ -25,7 +25,32 @@ class ActivityController extends BaseController
     $model=new ActivitySearch();
     $provider=$model->search(\Yii::$app->request->getQueryParams());
 
-    return $this->render('index', ['model'=>$model, 'provider'=>$provider]);
+/*    $events = array();
+    //Testing
+    $Event = new \yii2fullcalendar\models\Event();
+    $Event->id = 1;
+    $Event->title = 'Testing';
+    $Event->start = date('Y-m-d\Th:m:s\Z');
+    $events[] = $Event;
+
+    $Event = new \yii2fullcalendar\models\Event();
+    $Event->id = 2;
+    $Event->title = 'Testing';
+    $Event->start = date('Y-m-d\Th:m:s\Z',strtotime('tomorrow 6am'));
+    $events[] = $Event;*/
+
+    $events = Activity::find()->all();
+    foreach ($events as $event)
+    {
+      $Event = new \yii2fullcalendar\models\Event();
+      $Event->id = $event->id;
+      $Event->title = $event->title;
+      $Event->start = $event->date;
+      //$Event->time = $event->time;
+      $events[] = $Event;
+    }
+
+    return $this->render('index', ['model'=>$model, 'provider'=>$provider, 'events' => $events]);
   }
 
   public function actionView($id)

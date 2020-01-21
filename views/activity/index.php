@@ -5,13 +5,17 @@
 /* @var $this \yii\web\View */
 /* @var $model \app\models\ActivitySearch */
 /* @var $provider \yii\data\ActiveDataFilter */
+/* @var $events \app\controllers\actions\activity\IndexAction */
 
 $dependency = [
   'class' => 'yii\caching\DbDependency',
   'sql' => 'select max(id) from activity',
 ];
+
+
 ?>
 <div class="row">
+    <?= \yii2fullcalendar\yii2fullcalendar::widget(['options' => ['lang' => 'ru'], 'events' => $events]); ?>
   <?php if($this->beginCache('activityIndex0',['dependency' => $dependency])):?>
   <div class="col-md-12">
     <?= \yii\grid\GridView::widget([

@@ -56,7 +56,7 @@ class Activity extends ActivityBase
     ], parent::rules());
   }
 
-  public function attributeLabels()
+/*  public function attributeLabels()
   {
     return [
       'title' => 'Заголовок',
@@ -69,6 +69,29 @@ class Activity extends ActivityBase
       'reminder' => 'Напоминание',
       'email' => 'Эл.почта',
       'file' => 'Файл'
+    ];
+  }*/
+
+  public function fields()
+  {
+    return [
+      'id',
+      'title',
+      'date'=>function($model){
+        return \Yii::$app->formatter->asDate($model->date, 'd.M.Y');
+      },
+      'duration'=>function(){
+      return 0;
+      }
+    ];
+  }
+
+  public function extraFields()
+  {
+    return [
+      'user'=>function($model){
+        return $model->user->email;
+      }
     ];
   }
 }

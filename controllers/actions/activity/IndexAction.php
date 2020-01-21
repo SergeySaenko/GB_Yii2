@@ -19,6 +19,21 @@ class IndexAction extends BaseAction
     }
     $model=new ActivitySearch();
     $provider=$model->search(\Yii::$app->request->getQueryParams());
-    return $this->render('index', ['model'=>$model, 'provider'=>$provider]);
+
+    $events = array();
+    //Testing
+    $Event = new \yii2fullcalendar\models\Event();
+    $Event->id = 1;
+    $Event->title = 'Testing';
+    $Event->start = date('Y-m-d\Th:m:s\Z');
+    $events[] = $Event;
+
+    $Event = new \yii2fullcalendar\models\Event();
+    $Event->id = 2;
+    $Event->title = 'Testing';
+    $Event->start = date('Y-m-d\Th:m:s\Z',strtotime('tomorrow 6am'));
+    $events[] = $Event;
+
+    return $this->render('index', ['model'=>$model, 'provider'=>$provider, 'events' => $events]);
   }
 }

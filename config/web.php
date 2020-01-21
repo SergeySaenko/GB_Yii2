@@ -21,10 +21,24 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'MbOBBLeQNCRFpjaDkjoukkudLlVc4yp8',
-            'as logs' => ['class'=>\app\behaviors\LogBehavior::class]
+            'as logs' => ['class'=>\app\behaviors\LogBehavior::class],
+            'parsers'  => ['application/json'=>\yii\web\JsonParser::class]
         ],
         'authManager' => ['class' => 'yii\rbac\DbManager'],
         'rbac'=>['class'=>\app\components\RbacComponent::class],
+        'i18n'=>[
+          'translations' => [
+            'app*'=>[
+              'class' =>  'yii\i18n\PhpMessageSource',
+              'basePath' => '@app/messages',
+              'sourceLanguage' =>   'en-US',
+              'fileMap' => [
+                'app'   =>  'app.php',
+                'app/error' =>  'error.php'
+              ],
+            ],
+          ],
+        ],
         'dao'=>['class'=>\app\components\DAOComponent::class],
         'auth'=>['class'=>\app\components\AuthComponent::class],
         'cache' => [
@@ -34,6 +48,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\Users',
             'enableAutoLogin' => true,
+//            'enableSession' => false
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -60,6 +75,14 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+              'create'=>'activity/create',
+              'event/<action>'=>'activity/<action>',
+              'GET <controller>/view/<id:\d+>'=>'activity/view',
+              [
+                'class'=>yii\rest\UrlRule::class,
+                'controller'=>'activity-rest',
+                'pluralize'=>false
+              ]
             ],
         ],
         

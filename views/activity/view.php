@@ -16,8 +16,9 @@ $frequency = yii\helpers\ArrayHelper::getValue($array,$model->frequency);
         </div>
         <div class="col-lg-6 col-md-10 col-sm-12 px-2 py-4 information">
             <header><h2 class="text-left text-white p-3"><?=$model->title?></h2></header>
+            <?/*= Yii::t('app', 'Now',[time()]) */?>
             <div class="bg-light p-3">
-                <h4><?='Запланировано на     '.Yii::$app->formatter->asDate($model->date, 'short').
+                <h4><?='Запланировано на '.Yii::$app->formatter->asDate($model->date, 'short').
                   ($model->time ? ' в '.Yii::$app->formatter->asTime($model->time, 'short') :'')?></h4>
                 <h5><?= $model->endDate ?
                     'Дата окончания '.Yii::$app->formatter->asDate($model->endDate, 'short') :''?></h5>
